@@ -1,0 +1,4 @@
+#@data/values
+---
+namespace_suffix: -dev
+external_url: https://hello-tanzu.dev.orange.maki.lol

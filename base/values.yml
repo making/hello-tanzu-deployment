@@ -1,0 +1,5 @@
+#@data/values
+---
+namespace_suffix: ""
+external_url: https://hello-tanzu.example.com
+cluster_issuer_name: letsencrypt-maki-lol

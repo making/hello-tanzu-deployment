@@ -1,7 +1,11 @@
+#@ load("@ytt:data", "data")
+
+#@ namespace = "demo{}".format(data.values.namespace_suffix)
+
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: demo
+  name: #@ namespace
 
 ---
 apiVersion: apps/v1
@@ -10,9 +14,9 @@ metadata:
   labels:
     app: hello-tanzu
   name: hello-tanzu
-  namespace: demo
+  namespace: #@ namespace
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: hello-tanzu
@@ -33,7 +37,7 @@ metadata:
   labels:
     app: hello-tanzu
   name: hello-tanzu
-  namespace: demo
+  namespace: #@ namespace
 spec:
   ports:
   - name: 8080-8080
