@@ -12,7 +12,7 @@ metadata:
   name: hello-tanzu
   namespace: demo
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: hello-tanzu
