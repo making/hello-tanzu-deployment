@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-tanzu
+  name: hello-tanzu
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-tanzu
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hello-tanzu
+    spec:
+      containers:
+      - image: ghcr.io/making/hello-tanzu
+        name: hello-tanzu
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hello-tanzu
+  name: hello-tanzu
+  namespace: demo
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+  selector:
+    app: hello-tanzu
+
