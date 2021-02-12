@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-tanzu
+  namespace: demo
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-maki-lol
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+  - secretName: hello-tanzu-orange-maki-lol-tls
+    hosts:
+    - hello-tanzu.orange.maki.lol
+  rules:
+  - host: hello-tanzu.orange.maki.lol
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-tanzu
+            port:
+              number: 8080
