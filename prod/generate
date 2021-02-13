@@ -1,8 +1,0 @@
-#!/bin/bash
-
-ytt --ignore-unknown-comments=true \
-    -f $(dirname $0)/../base \
-    -f $(dirname $0) \
-    --data-values-env YTT_ \
-    --data-values-env-yaml YTT_YAML_ \
-    | kbld -f - 

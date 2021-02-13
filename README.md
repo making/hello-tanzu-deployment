@@ -12,6 +12,16 @@ ytt --ignore-unknown-comments=true \
     | kubectl apply -f-
 ```
 
+Verify manifest to be installed on dev and prod enviroments
+
+```
+# Dev
+ytt -f base -f dev
+
+# Prod
+ytt -f base -f prod
+```
+
 Given the ArgoCD server configured below
 
 ```
