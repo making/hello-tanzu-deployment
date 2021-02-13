@@ -24,8 +24,25 @@ argocd cluster add $(kubectl config current-context)
 Create apps for dev and prod environment as follows
 
 ```
-./create-argocd-app-dev.sh
-./create-argocd-app-prod.sh
+# Dev
+argocd app create hello-tanzu-dev \
+  --repo https://github.com/making/hello-tanzu-deployment.git \
+  --path dev \
+  --config-management-plugin ytt \
+  --dest-server https://192.168.11.114:6443 \
+  --dest-namespace demo-dev \
+  --sync-policy automated \
+  --auto-prune
+
+# Prod
+argocd app create hello-tanzu-prod \
+  --repo https://github.com/making/hello-tanzu-deployment.git \
+  --path prod \
+  --config-management-plugin ytt \
+  --dest-server https://192.168.11.114:6443 \
+  --dest-namespace demo \
+  --sync-policy automated \
+  --auto-prune
 ```
 
 You will see 2 apps in ArgoCD UI as follows
